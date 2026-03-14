@@ -15,14 +15,14 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://moogiri.github.io', // Placeholder
+  url: 'https://saikoro2007.github.io', // Placeholder
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/moogiri_wiki/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'moogiri', // Usually your GitHub org/user name.
+  organizationName: 'saikoro2007', // Usually your GitHub org/user name.
   projectName: 'moogiri_wiki', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -41,7 +41,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // editUrl: 'https://github.com/moogiri/moogiri-wiki/edit/main/',
+          // editUrl: 'https://github.com/saikoro2007/moogiri_wiki/edit/main/',
         },
         blog: false, // ブログ機能はWikiでは一旦無効化します
         theme: {
@@ -69,11 +69,6 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'ガイドライン',
-        },
-        {
-          href: 'https://github.com/moogiri/moogiri-wiki',
-          label: 'GitHub',
-          position: 'right',
         },
       ],
     },
