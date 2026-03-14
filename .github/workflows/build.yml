@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+    # パスを指定して特定のファイルの変更時のみ実行する設定も可能です
   pull_request:
     branches:
       - main
@@ -13,12 +14,17 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
     name: Build Docusaurus
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -34,4 +40,24 @@ jobs:
       - name: Build website
         run: npm run build
 
-  # deploy job can be added later following Docusaurus GitHub Pages guide
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    # mainブランチへのプッシュ時のみデプロイを実行します（PR時はビルドチェックのみ）
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
