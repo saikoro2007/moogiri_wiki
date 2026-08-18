@@ -80,7 +80,7 @@ const config: Config = {
           items: [
             {
               label: 'サーバーの基本ルール',
-              to: '/docs/01.はじめに/02.serverrule',
+              to: '/docs/rules/general',
             },
           ],
         },
